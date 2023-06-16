@@ -1,25 +1,14 @@
 <!DOCTYPE html>
 <html>
-    <head></head>
+    <head>
+      <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+      <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+      <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    </head>
     <body>
-        <div class="container" style="width: 300px; margin: auto;">
-  <div >
-     <input id="display" type="text" value="0"/>
-    <input id="output" type="text"/>   
-  </div>
+      <div id="root"></div>
 
-  <table id="keyboard">
-    <tbody>
-      <tr><td><button id="clear">AC</button><td><button id="divide">/</button></td><td><button id="multiply">*</button></td></tr>
-      <tr><td><button id="seven">7</button></td><td><button id="eight">8</button></td><td><button id="nine">9</button></td><td><button id="subtract">-</button></td></tr>
-       <tr><td><button id="four">4</button></td><td><button id="five">5</button></td><td><button id="six">6</button></td><td><button id="add">+</button></td></tr>
-       <tr><td><button id="one">1</button></td><td><button id="two">2</button></td><td><button id="three">3</button></td></tr>
-      <tr><td><button id="zero">0</button></td><td><button id="decimal">.</button></td><td><button id="equals">=</button></td></tr>
-    </tbody>
-  </table>
-</div>
-<script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-<script src="index.js"></script>
+    <script type="text/babel" src="index.js"></script>
+    <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
     </body>
 </html>
