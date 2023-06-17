@@ -84,16 +84,41 @@ function App(){
     }
     return newExpression;
   }
+
+  const handleDecimal = symbol => {
+    if(!decimal){      
+      setDecimal(true)
+     return expression + symbol
+    }else
+      return expression;
+  }
+  const handleOperators = (symbol,displayValue) => {
+        let operators = "";
+        let newDisplayValue = displayValue;
+        let lastInput = expression[expression.length -1];        
+        newDisplayValue = expression;
+        
+        if(["+","*","/","-"].indexOf(lastInput) === -1){          
+           operators = symbol;
+        }
+        else if(lastInput == "*"){         
+           symbol == "-" ? operators = lastInput + symbol : operators = symbol;
+           newDisplayValue = removeOperator(expression);
+         }else{
+           operators = symbol;
+           newDisplayValue = removeOperator(expression);
+        }
+        setDecimal(false)
+        input.includes("=") ? newDisplayValue = expression + operators : newDisplayValue += operators;
+        operators = "";
+        return newDisplayValue;
+  }
   const handleCalculator = symbol => {
     let displayValue = "";
    
     switch(symbol){       
       case ".":        
-          if(!decimal){
-            displayValue = expression + symbol
-            setDecimal(true)
-          }else
-            displayValue = expression;
+         displayValue = handleDecimal(symbol);
       break;
       case "AC":
           allClear();
@@ -107,23 +132,7 @@ function App(){
       case "+":
       case "/":
       case "-":
-        let operators = "";
-        let lastInput = expression[expression.length -1];        
-        displayValue = expression;
-        
-        if(["+","*","/","-"].indexOf(lastInput) === -1){          
-           operators = symbol;
-        }
-        else if(lastInput == "*"){         
-           symbol == "-" ? operators = lastInput + symbol : operators = symbol;
-           displayValue = removeOperator(expression);
-         }else{
-           operators = symbol;
-           displayValue = removeOperator(expression);
-        }
-        setDecimal(false)
-        input.includes("=") ? displayValue = expression + operators : displayValue += operators;
-        operators = "";
+        displayValue = handleOperators(symbol,displayValue);
        break;
 
       default:
@@ -141,11 +150,9 @@ function App(){
     setInput(0);
     setDecimal(false);
   }
-  const calculate = () => {
-    //setAnswer(eval(expression)) 
+  const calculate = () => {   
     setExpression(eval(expression))
-    setInput(prev => prev + "=" + eval(expression))
-    //setExpression(eval(expression))
+    setInput(prev => prev + "=" + eval(expression))    
   }
   
   return(
@@ -162,23 +169,6 @@ function App(){
             })
           }
         </div>
-        {/* <div id="clear" onClick={allClear}>AC</div>
-        <div id="divide" onClick={() => display("/")}>/</div>
-        <div id="multiply" onClick={() => display("*")}>X</div>
-        <div id="seven" onClick={() => display("7")}>7</div>
-        <div  id="eight" onClick={() => display("8")}>8</div>
-        <div id="nine" onClick={() => display("9")}>9</div>
-        <div id="subtract" onClick={() => display("-")}>-</div>
-        <div id="four" onClick={() => display("4")}>4</div>
-        <div id="five" onClick={() => display("5")}>5</div>
-        <div id="six" onClick={() => display("6")}>6</div>
-        <div id="add" onClick={() => display("+")}>+</div>
-        <div id="one" onClick={() => display("1")}>1</div>
-        <div id="two" onClick={() => display("2")}>2</div>
-        <div id="three" onClick={() => display("3")}>3</div>
-        <div id="equals" onClick={() => calculate()}>=</div>
-        <div id="zero" onClick={() => display("0")}>0</div>
-        <div id="decimal" onClick={() => display(".")}>.</div> */}
       </div>
     </div>
   )
