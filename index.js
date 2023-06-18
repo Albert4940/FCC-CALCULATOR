@@ -9,6 +9,10 @@ function App(){
           value:"AC"
         },
         {
+          id:"clearSymbol",
+          value:"C"
+        },
+        {
           id:"divide",
           value:"/"
         },
@@ -73,7 +77,6 @@ function App(){
           value:"="
         }, 
       ];
-  const checkDecimal = () => {} 
 
   const removeOperator = expression => {
     let newExpression = expression;
@@ -124,6 +127,13 @@ function App(){
           allClear();
           return;
       break;
+      case "C":
+        displayValue = clear();
+        if(displayValue == ""){
+          allClear();
+          return;
+        }
+      break;
       case "=":
         calculate();
         return;
@@ -145,6 +155,11 @@ function App(){
     setExpression(displayValue);
     setInput(displayValue);
   }
+
+  const clear = () => {    
+    return  expression.slice(0,[expression.length -1]);
+  }
+
   const allClear = () => {
     setExpression(0);
     setInput(0);
@@ -165,7 +180,7 @@ function App(){
         <div id="keys">
           {
             keys.map(({id,value}) => {
-              return <button id={id} onClick={() => handleCalculator(value)}>{value}</button>
+              return <button key={`key-${id}`} id={id} onClick={() => handleCalculator(value)}>{value}</button>
             })
           }
         </div>
