@@ -1,8 +1,27 @@
+const Display = ({input,expression}) => {
+  return (  
+  <div id="display-group">
+    <div>{input}</div>
+    <div id="display">{expression}</div>  
+  </div>
+  );
+}
+
+const Key = ({id,value, handleCalculator}) => {
+  return (
+    <button 
+      id={id} 
+      onClick={() => handleCalculator(value)}
+    >
+      {value}
+    </button>
+  )
+}
 function App(){
   const [expression, setExpression] = React.useState(0); 
   const [decimal, setDecimal] = React.useState(false); 
   const [input,setInput] = React.useState(0);
-  
+  const hello ="Albert";
   const keys = [
         {
           id:"clear",
@@ -173,14 +192,18 @@ function App(){
   return(
     <div className="container">
       <div className="grid">
-        <div className="dis">
-          <input id="display" type="text" value={expression} />
-          <div>{input}</div>
-        </div>
-        <div id="keys">
+       <Display input={input} expression={expression} />
+        <div id="keyboard">
           {
             keys.map(({id,value}) => {
-              return <button key={`key-${id}`} id={id} onClick={() => handleCalculator(value)}>{value}</button>
+             return (
+              <Key 
+                key={`key-${id}`} 
+                id={id} 
+                value={value} 
+                handleCalculator={handleCalculator}
+              />
+             )
             })
           }
         </div>
