@@ -17,6 +17,13 @@ const Key = ({id,value, handleCalculator}) => {
     </button>
   )
 }
+
+const Footer = () => (
+  <div className="my-3">
+    <p className="text-center text-white"><a className="text-white text-decoration-none" href="https://codepen.io/albert4940/pen/PoBoyWg?editors=0111">Created by Albert-Mary</a></p>
+  </div>
+)
+
 function App(){
   const [expression, setExpression] = React.useState(0); 
   const [decimal, setDecimal] = React.useState(false); 
@@ -191,7 +198,7 @@ function App(){
   
   return(
     <div className="container">
-      <div className="grid">
+      <div id="grid">
        <Display input={input} expression={expression} />
         <div id="keyboard">
           {
@@ -206,8 +213,9 @@ function App(){
              )
             })
           }
-        </div>
+        </div>        
       </div>
+      <Footer />
     </div>
   )
 }
