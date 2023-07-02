@@ -19,9 +19,9 @@ const Key = ({id,value, handleCalculator}) => {
 }
 
 const Footer = () => (
-  <div className="my-3">
-    <p className="text-center text-white"><a className="text-white text-decoration-none" href="https://codepen.io/albert4940/pen/PoBoyWg?editors=0111">Created by Albert-Mary</a></p>
-  </div>
+  <footer >
+    <p ><a  href="https://codepen.io/albert4940/pen/PoBoyWg?editors=0111">Created by Albert-Mary</a></p>
+  </footer>
 )
 
 function App(){
